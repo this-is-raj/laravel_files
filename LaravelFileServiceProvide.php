@@ -72,6 +72,7 @@ class LaravelFileServiceProvide extends ServiceProvider
         $this->loadMigrationsFrom($migrationsPath);
     }
 
+
     private function registerRoutes() {
         require_once 'routes.php';
     }
