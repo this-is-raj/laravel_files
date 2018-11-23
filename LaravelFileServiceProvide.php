@@ -26,9 +26,11 @@ class LaravelFileServiceProvide extends ServiceProvider
 
         $this->registerMigrations();
 
-        $this->publishViews();
-
         $this->registerRoutes();
+
+        $this->registerBladeDirectives();
+
+        $this->publishViews();
     }
 
     /**
@@ -48,7 +50,10 @@ class LaravelFileServiceProvide extends ServiceProvider
         return [];
     }
 
-    private function publishConfig() {
+    /**
+     * Publish Configurations file.
+     */
+    private function publishConfig () {
         if ($this->isLumen()) return;
 
         $configSource = realpath(__DIR__ . '/config.php');
@@ -58,22 +63,28 @@ class LaravelFileServiceProvide extends ServiceProvider
         $this->publishes([$configSource, $configDestination], 'config');
     }
 
-    private function registerMigrations() {
+    /**
+     * Register all the migrations.
+     */
+    private function registerMigrations () {
         $migrationsPath = __DIR__ . '/Database/migrations';
 
         $this->loadMigrationsFrom($migrationsPath);
     }
 
-    private function publishViews() {
+    private function publishViews () {
         if ($this->isLumen()) return;
 
-        $migrationsPath = __DIR__ . '/Database/migrations';
+        $viewPath = __DIR__ . '/view';
 
-        $this->loadMigrationsFrom($migrationsPath);
+        $this->loadMigrationsFrom($viewPath);
     }
 
-
-    private function registerRoutes() {
+    private function registerRoutes () {
         require_once 'routes.php';
+    }
+
+    private function registerBladeDirectives () {
+
     }
 }

@@ -2,48 +2,15 @@
 
 namespace Raj\LaravelFiles\Http\Controllers;
 
-use Illuminate\Database\Eloquent\Model;
 use Raj\LaravelFiles\Model\Files;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\File\FileUploadRequest;
 
 class FilesController extends Controller
 {
-    /**
-     * This property let you know  about  all the ownerType  and their  supported file properties.
-     *
-     * className => full qualified name of the owner's  Model class, Required for morph relations.
-     *
-     * ***Important Note: Don't forget to include App/Http/Traits/HasFile Trait in Model class with this className.
-     *
-     *
-     * fileType => An array of all supported files with keys as fileType name and value is another
-     *      Array containing properties of that file type.
-     *      For Example: Each student has avatar and one student can have only one avatar hence we
-     *      can set maxFileCounts properties = 1
-     *      Note: in future we can define and set more properties
-     *      Such as: 1. We can validate allowed mimeTypes of file directly from here.
-     *               2. Allow and disallow crop and resize on uploaded file.
-     *               3. Custom storage location for uploaded file.
-     *               4. Is document necessary and must be uploaded for the given ownerType.
-     *               5. Document validity period (In this facility we can implement that document automatically
-     *                  get deleted after validity expires or we can send notification to upload new document.)
-     *
-    */
-    const ownerTypes = [
-        'student' => [
-            'className' => Model::class,
-            'fileTypes' => [
-                'student_photo' => ['maxFileCounts' => 1],
-                'birth_certificate' => ['maxFileCounts' => 1],
-                'medical_records' => [],
-                'immunisation_records' => [],
-                'other_documents' => []
-            ],
-        ],
-    ];
-
-    public function __construct() {}
+    public function __construct() {
+        //
+    }
 
     /**
      * All the input related help for file uploading can be found in FileUploadRequest Class.
