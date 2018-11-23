@@ -72,19 +72,19 @@ class LaravelFileServiceProvide extends ServiceProvider
         $this->loadMigrationsFrom($migrationsPath);
     }
 
-    private function publishViews () {
-        if ($this->isLumen()) return;
-
-        $viewPath = __DIR__ . '/view';
-
-        $this->loadMigrationsFrom($viewPath);
-    }
-
     private function registerRoutes () {
         require_once 'routes.php';
     }
 
     private function registerBladeDirectives () {
 
+    }
+
+    private function publishViews () {
+        if ($this->isLumen()) return;
+
+        $viewPath = __DIR__ . '/view';
+
+        $this->loadMigrationsFrom($viewPath);
     }
 }
